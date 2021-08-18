@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-const AuthPage = () => {
+const AuthPage: React.FC = () => {
   return (
     <div>
-      Авторизация/Регистрация
+      Авторизация
     </div>
   )
 }
 
-export default AuthPage
+export default AuthPage;

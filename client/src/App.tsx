@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { useActions } from "./hooks/useActions";
 import { BrowserRouter } from "react-router-dom";
-
+import AppRouter from './components/AppRouter';
+import Header from './components/Header';
+import { Wrapper } from "./styles/layout";
 import "./styles/App.scss";
-import Main from './pages/Main';
+
 
 function App(): JSX.Element {
   const { checkAuthUser } = useActions();
@@ -17,7 +19,10 @@ function App(): JSX.Element {
 
   return (
     <BrowserRouter>
-      <Main />
+      <Wrapper>
+        <Header />
+        <AppRouter />
+      </Wrapper>
     </BrowserRouter>
   );
 }
