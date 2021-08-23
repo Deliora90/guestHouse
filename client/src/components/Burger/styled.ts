@@ -5,17 +5,6 @@ interface StyledBurgerIconProps {
 }
 
 // Styles
-export const BurgerButton = styled.button`
-  height: 24px;
-  width: 24px;
-  display: none;
-  cursor: pointer;
-  position: relative;
-  background-color: transparent;
-  @media screen and (max-width:${(props) => props.theme.media.tablet}px){
-    display: flex;
-  }
-`;
 export const BurgerIcon = styled.span<StyledBurgerIconProps>`
   height: 3px;
   width: 24px;

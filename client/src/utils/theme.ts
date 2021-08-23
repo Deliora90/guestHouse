@@ -27,5 +27,8 @@ export const theme = {
     tablet: 768.98,
     tabletLandscape: 1024.98,
     desktop: 1600.98
+  },
+  mixins: {
+    adaptiveSizeWidth: (minSizeElement: string, diffSizes: string): string => `calc(${minSizeElement} + (${diffSizes} + ${diffSizes} * 0.7) * ((100vw - 414px) / 1920))`,
   }
 }

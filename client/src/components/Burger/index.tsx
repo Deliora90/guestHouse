@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
-import { BurgerButton, BurgerIcon } from "./styled";
+import React from 'react';
+import { FiMenu, FiX } from "react-icons/fi";
+import { ButtonIcon } from "../../styles/buttons";
 
-const Burger: React.FC = () => {
-  const [active, setActive] = useState(false);
+interface BurgerProps {
+  open: boolean;
+  action: () => void;
+}
+
+const Burger: React.FC<BurgerProps> = (props: BurgerProps) => {
   return (
-    <BurgerButton onClick={() => setActive((value) => !value)}>
-      <BurgerIcon isActive={active} />
-    </BurgerButton>
+    <ButtonIcon onClick={() => props.action()}>
+      {props.open ? <FiX size="24px"/> : <FiMenu size="24px"/>}
+    </ButtonIcon>
   )
 }
 

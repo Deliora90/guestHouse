@@ -10,7 +10,6 @@ export const registrationUser = (email: string, password: string) => {
     try {
       dispatch({ type: UserActionTypes.REGISTRATION });
       const response = await AuthService.registration(email, password);
-      console.log("Response", response);
       localStorage.setItem('token', response.data.accessToken);
       dispatch({ type: UserActionTypes.REGISTRATION_SUCCESS, payload: response.data.user });
     } catch (err) {

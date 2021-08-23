@@ -19,3 +19,9 @@ export enum FlexDirection{
   column = "column",
   columnReverse = "column-reverse"
 }
+export enum Position{
+  relative = "relative",
+  absolute = "absolute",
+  fixed = "fixed",
+  static = "static",
+}
