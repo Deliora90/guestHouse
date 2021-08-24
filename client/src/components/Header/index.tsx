@@ -6,7 +6,7 @@ import Logo from "../Logo";
 import { Flex } from "../../styles/layout";
 import { HeaderStyled } from "./styled";
 import { FlexDirection } from "../../utils/properties";
-import { ButtonIcon } from "../../styles/buttons";
+import { ButtonIcon } from "../Buttons/buttons";
 import { FiUser, FiLogIn } from "react-icons/fi";
 
 const Header: React.FC = () => {

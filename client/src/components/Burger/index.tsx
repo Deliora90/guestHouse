@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiMenu, FiX } from "react-icons/fi";
-import { ButtonIcon } from "../../styles/buttons";
+import { ButtonIcon } from "../Buttons/buttons";
 
 interface BurgerProps {
   open: boolean;

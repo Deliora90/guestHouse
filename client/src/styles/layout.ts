@@ -28,6 +28,7 @@ export const Flex = styled.div<StyledFlexProps>`
   gap: 0px;
 `
 export const Wrapper = styled.div`
+  z-index: 1;
   margin: 0 auto;
   max-width: 1188px;
   width: 100%;

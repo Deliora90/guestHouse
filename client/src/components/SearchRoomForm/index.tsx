@@ -1,53 +1,64 @@
 import React from 'react';
-import { SearchRoomFormStyled, SearchRoomGroup, Input, Label, InputNumberImg } from "./styled";
-import { Button } from "../../styles/buttons";
+import { useHistory } from 'react-router-dom';
+import moment from "moment";
+import { SearchRoomFormStyled, SearchRoomGroup, SearchRoomError } from "./styled";
+import { Button } from "../Buttons/buttons";
 import { useActions } from '../../hooks/useActions';
-import { Form } from 'antd';
+import { useForm } from "react-hook-form";
+import Input from "../Input";
+import { useTypesSelector } from '../../hooks/useTypesSelector';
+
+type FormData = {
+  dateIn: Date;
+  dateOut: Date;
+  amountPerson: number;
+}
 
 const SearchRoomForm: React.FC = () => {
+  const { isDesktop } = useTypesSelector(state => state.global);
+  const history = useHistory();
   const { getAllRooms } = useActions();
-  const [form] = Form.useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+    defaultValues: { dateIn: moment().format("YYYY-MM-DD"), dateOut: moment().add(3, 'days').format("YYYY-MM-DD"), amountPerson: 1 },
+  });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FormData) => {
     getAllRooms(data);
+    history.push('/rooms');
   }
 
-  const onFinish = (values: any) => {
-    console.log('Received values of form: ', values);
-  };
-
   return (
-    <SearchRoomFormStyled form={form} onFinish={onFinish}>
-      <SearchRoomGroup name="dateIn">
-        <Label htmlFor="firstDate">Даты заезда</Label>
+    <SearchRoomFormStyled onSubmit={handleSubmit(onSubmit)} isDesktop={isDesktop}>
+      <SearchRoomGroup minWidth={isDesktop ? "" : "100%"}>
         <Input
           type="date"
-          id="firstDate"
-          defaultValue={"2021-08-20"}
+          id="dateIn"
+          labelText="Даты заезда"
+          {...register("dateIn", { min: moment().format("YYYY-MM-DD") })}
         />
+        {errors.dateIn && <SearchRoomError>Не может быть меньше текущей даты</SearchRoomError>}
       </SearchRoomGroup>
-      <SearchRoomGroup name="dateOut">
-        <Label htmlFor="secondDate">Даты выезда</Label>
+      <SearchRoomGroup minWidth={isDesktop ? "" : "100%"}>
         <Input
           type="date"
-          id="secondDate"
-          defaultValue={"2021-08-20"}
+          id="dateOut"
+          labelText="Даты выезда"
+          {...register("dateOut", { min: moment().format("YYYY-MM-DD") })}
         />
+        {errors.dateOut && <SearchRoomError>Не может быть меньше текущей даты</SearchRoomError>}
       </SearchRoomGroup>
-      <SearchRoomGroup name="amountPerson">
-        <Label htmlFor="amountPerson">Гостей</Label>
-        <InputNumberImg />
+      <SearchRoomGroup minWidth={isDesktop ? "" : "100%"}>
         <Input
           type="number"
           id="amountPerson"
-          defaultValue={1}
+          labelText="Гостей"
+          {...register("amountPerson", { min: 1, max: 100 })}
         />
+        {errors.amountPerson && <SearchRoomError>Не может быть меньше 1</SearchRoomError>}
       </SearchRoomGroup>
-      <SearchRoomGroup>
-        <Button htmlType="submit">
-          Проверить
-        </Button>
-      </SearchRoomGroup>
+      <Button type="submit">
+        Проверить
+      </Button>
     </SearchRoomFormStyled>
   )
 }

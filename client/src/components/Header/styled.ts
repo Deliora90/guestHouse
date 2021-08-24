@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const HeaderStyled = styled.header`
+  z-index: ${(props) => props.theme.zIndexes.siteHeader};
   position: relative;
   width: 100%;
   padding: 9px calc((100vw - 1188px)/ 2);

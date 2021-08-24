@@ -17,3 +17,4 @@ export const ORANGE_COLOR = "#FFB23F";
 export const SUPER_LIGHT_GREY_COLOR = "#FBFBFB";
 export const WHITE_COLOR = "#FFFFFF";
 
+export const TRANSLUCENT_BLUE_COLOR = "rgba(63, 140, 255, 0.5)";
