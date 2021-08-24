@@ -17,6 +17,7 @@ router.get("/refresh", userController.refresh);
 //router.get("/users", authMiddleware, userController.getUsers);
 
 router.post('/types', RoomController.createTypeRoom);
+router.post('/pictures', RoomController.addPicturesRoom);
 router.post('/types/getAll', RoomController.getAll);
 router.post('/room/book', RoomController.bookRoom);
 router.post('/room/unbook', RoomController.unbookRoom);

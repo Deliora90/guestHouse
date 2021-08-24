@@ -4,6 +4,7 @@ import mailService from "./mail-service.js";
 import UserModel from "../models/user.js";
 import TypeDto from "../dtos/type-dto.js";
 import RoomDto from "../dtos/room-dto.js";
+import FileService from "./file-service.js";
 
 class RoomService {
 
@@ -59,11 +60,28 @@ class RoomService {
       .filter((el) => el)
       .map((el) => new TypeDto(el));
     }
-    return result;
+    return {rooms: result};
   }
   async createTypeRoom(type) {
     const createType = await TypeRoom.create(type);
     return createType;
+  }
+  async addPictureRoom(room, files) {
+    const { typeId } = room;
+    const typeRoom = await TypeRoom.findOne({ _id: typeId });
+    if(!typeRoom) {
+      throw ApiError.BadRequest("Такой тип комнаты не найден");
+    }
+    if(files.mainPicture) {
+      const fileName = FileService.saveFiles(files.mainPicture);
+      typeRoom.mainPicture = fileName;
+    }
+    if(files.photos) {
+      const photosName = FileService.saveFiles(files.photos);
+      typeRoom.photos = photosName;
+    }
+    const updateType = await TypeRoom.updateOne(typeRoom);
+    return updateType;
   }
   async bookRoom(typeId, userId, dateIn, dateOut, amountPerson, withFood) {
     const typeRoom = await TypeRoom.findOne({ _id: typeId });

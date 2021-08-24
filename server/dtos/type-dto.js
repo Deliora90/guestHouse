@@ -1,4 +1,5 @@
 export default class TypeDto {
+  typeId;
   type;
   descriptions;
   mainPicture;
@@ -13,6 +14,7 @@ export default class TypeDto {
   sumWithFood;
 
   constructor(typeRoom) {
+    this.typeId = typeRoom._id;
     this.type = typeRoom.type;
     this.descriptions = typeRoom.descriptions;
     this.mainPicture = typeRoom.mainPicture;

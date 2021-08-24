@@ -17,6 +17,14 @@ class RoomController {
       next(err);
     }
   }
+  async addPicturesRoom(req, res, next) {
+    try {
+      const type = await RoomService.addPictureRoom(req.body, req.files);
+      return res.json(type);
+    } catch (err) {
+      next(err);
+    }
+  }
   async getAll(req, res, next) {
     try {
       const { dateIn, dateOut, amountPerson } = req.body;

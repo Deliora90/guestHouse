@@ -6,6 +6,7 @@ import router from "./routers/router.js";
 import dotenv from "dotenv";
 import process from "node:process";
 import errorMiddleware from "./middlewares/error-middleware.js";
+import fileUpload from "express-fileupload";
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ const route = "/api";
 
 const app = express();
 app.use(express.json());
+app.use(fileUpload({}))
 app.use(cookieParser());
 app.use(cors({
   credentials: true,
