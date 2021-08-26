@@ -1,13 +1,13 @@
 import React from "react";
 import { StepperWrapper, Step, StepDescription, DividerLine, DividerLineLast, StepCircle } from "./styled";
 
-interface StepperProps{
+interface StepperProps {
   steps: string[];
   currentStep: number;
-  direction: "vertical" | "horizontal";
+  color: string;
 }
 
-const Stepper = ({steps, currentStep, direction}: StepperProps) => {
+const Stepper: React.FC<StepperProps> = ({ steps, currentStep, color }: StepperProps) => {
   return (
     <div>
       <StepperWrapper>
@@ -15,9 +15,9 @@ const Stepper = ({steps, currentStep, direction}: StepperProps) => {
           const highlighted = index <= currentStep;
           return (
             <Step key={index}>
-              <StepDescription highlighted={highlighted}>{step}</StepDescription>
-              <StepCircle highlighted={highlighted}/>
-              <DividerLine numStep={index} amountSteps={steps.length} highlighted={highlighted}/>
+              <StepDescription highlighted={highlighted} color={color}>{step}</StepDescription>
+              <StepCircle highlighted={highlighted} color={color} />
+              <DividerLine numStep={index} amountSteps={steps.length} highlighted={highlighted} color={color} />
               {index === steps.length - 1 && <DividerLineLast />}
             </Step>
           )

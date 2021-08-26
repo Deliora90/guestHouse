@@ -1,17 +1,22 @@
 import styled, { css } from "styled-components";
 
+// Props
 interface DividerLineProps {
   numStep: number;
   amountSteps: number;
   highlighted: boolean;
+  color: string;
 }
 interface StepCircleProps {
   highlighted: boolean;
+  color: string;
 }
 interface StepDescriptionProps {
   highlighted: boolean;
+  color: string;
 }
 
+// Styled
 export const StepperWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -27,30 +32,27 @@ export const Step = styled.div`
   position: relative;
 `
 export const StepDescription = styled.p<StepDescriptionProps>`
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
   line-height: 22px;
   color: #C4C4C4;
   transition: all 0.3s ease 0s;
+  ${(props) => props.theme.mixins.fontStyle("Montserrat", "normal", 600, "18px")}
   ${(props) => props.highlighted && css`
-    color: #3F8CFF;
+    color: ${props.color};
   `}
 `
 export const StepCircle = styled.div<StepCircleProps>`
+  z-index: 1;
   width: 23px;
   height: 23px;
-  background-color: #bdbdbd;
+  background-color: #C4C4C4;
   border-radius: 50%;
   position: absolute;
   top: 50%;
-  transform: translate(0, -40%);
   left: 49%;
-  z-index: 1;
+  transform: translate(0, -40%);
   transition: all 0.3s ease 0s;
   ${(props) => props.highlighted && css`
-    background-color: #3F8CFF;
+    background-color: ${props.color};
     &::after{
       content: "";
       position: absolute;
@@ -66,7 +68,7 @@ export const StepCircle = styled.div<StepCircleProps>`
 `
 export const DividerLineLast = styled.div`
   height: 4px;
-  background-color: #bdbdbd;
+  background-color: #C4C4C4;
   position: absolute;
   top: 50%;
   width: 50%;
@@ -76,12 +78,12 @@ export const DividerLineLast = styled.div`
 export const DividerLine = styled.div<DividerLineProps>`
   z-index: 0;
   height: 4px;
-  background-color: #bdbdbd;
+  background-color: #C4C4C4;
   position: absolute;
   top: 50%;
   transition: all 0.3s ease 0s;
   ${(props) => props.highlighted && css`
-    background-color: #3F8CFF;
+    background-color: ${props.color};
   `}
   ${({ numStep }) => {
     if (numStep === 0) {

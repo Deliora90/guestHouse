@@ -32,7 +32,6 @@ export const Wrapper = styled.div`
   margin: 0 auto;
   max-width: 1188px;
   width: 100%;
-  overflow: hidden;
   @media screen and (max-width: 1188px){
     max-width: calc(100% - 34px);
   }

@@ -69,6 +69,7 @@ class RoomService {
   async addPictureRoom(room, files) {
     const { typeId } = room;
     const typeRoom = await TypeRoom.findOne({ _id: typeId });
+
     if(!typeRoom) {
       throw ApiError.BadRequest("Такой тип комнаты не найден");
     }
@@ -80,7 +81,7 @@ class RoomService {
       const photosName = FileService.saveFiles(files.photos);
       typeRoom.photos = photosName;
     }
-    const updateType = await TypeRoom.updateOne(typeRoom);
+    const updateType = await TypeRoom.updateOne({ _id: typeId }, typeRoom);
     return updateType;
   }
   async bookRoom(typeId, userId, dateIn, dateOut, amountPerson, withFood) {

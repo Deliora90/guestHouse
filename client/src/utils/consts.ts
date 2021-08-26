@@ -1,3 +1,7 @@
+// URL
+export const API_URL = "http://localhost:5000/api";
+export const API_STATIC = "http://localhost:5000/static/";
+
 // ROUTE
 export const MAIN_ROUTE = "/";
 export const ROOMS_ROUTE = "/rooms";

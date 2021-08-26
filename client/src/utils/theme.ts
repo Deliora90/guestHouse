@@ -47,5 +47,12 @@ export const theme = {
   },
   mixins: {
     adaptiveSizeWidth: (minSizeElement: string, diffSizes: string): string => `calc(${minSizeElement} + (${diffSizes} + ${diffSizes} * 0.7) * ((100vw - 414px) / 1920))`,
+    fontStyle: (family?: string, style?: string, weight?: number, size?: string, lineHeight?: string): string => `
+      font-family: ${family ?? "Montserrat"};
+      font-style: ${style ?? "normal"};
+      font-weight: ${weight ?? 500};
+      font-size: ${size ?? "14px"};
+      ${lineHeight && `line-height:${lineHeight}`};
+    `
   }
 }

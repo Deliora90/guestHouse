@@ -1,7 +1,7 @@
 import axios from "axios";
 import { AuthResponse } from "../models/response/AuthResponse";
+import { API_URL } from "../utils/consts";
 
-export const API_URL = "http://localhost:5000/api";
 
 const $api = axios.create({
   withCredentials: true,
@@ -14,7 +14,6 @@ $api.interceptors.request.use((config) => {
 });
 
 $api.interceptors.response.use((config) => {
-
   return config;
 }, (async (error) => {
   const originalRequest = error.config;

@@ -25,11 +25,7 @@ export const Button = styled.button<ButtonProps>`
   margin: ${(props) => props.margin ?? "0"};;
   padding: 10px 29px;
 
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
+  ${(props) => props.theme.mixins.fontStyle("Montserrat", "normal", 500, "18px", "22px")}
   ${(props) => {
     const { primaryButton, flatButton } = props.theme.colors;
 

@@ -1,13 +1,19 @@
 import React from "react";
 import Stepper from "../../components/Stepper";
 import { Button } from "../../components/Buttons/buttons";
+import { useTypesSelector } from "../../hooks/useTypesSelector";
+import { useEffect } from "react";
+import RoomsList from "../../components/RoomsList";
+import { Wrapper } from "../../styles/layout";
 
 const Rooms: React.FC = () => {
+  const { typeDevice } = useTypesSelector(state => state.global);
+  const { rooms } = useTypesSelector(state => state.rooms);
   const [currentStep, setCurrentStep] = React.useState(0);
   const steps = [
     {
       title: "Номер и цена",
-      content: 'First-content',
+      content: <RoomsList rooms={rooms} />,
     },
     {
       title: "Бронь и оплата",
@@ -18,23 +24,29 @@ const Rooms: React.FC = () => {
       content: 'Last-content',
     },
   ];
+
+  const onNextStep = () => {
+    if (currentStep < steps.length - 1) {
+      setCurrentStep((step) => step += 1);
+    }
+  }
+  const onPreviousStep = () => {
+    if (currentStep > 0) {
+      setCurrentStep((step) => step -= 1);
+    }
+  }
+
   return (
     <div>
-      <Stepper steps={steps.map((step) => step.title)}
-        direction="horizontal"
-        currentStep={currentStep}
-      />
-      <div style={{width: "100%", height: "500px", display: "flex", alignItems: "center", justifyContent: "center"}}>
+      {typeDevice !== "phone" &&
+        <Stepper steps={steps.map((step) => step.title)}
+          currentStep={currentStep}
+          color={"#3F8CFF"}
+        />
+      }
+      <Wrapper>
         {steps[currentStep].content}
-      </div>
-      <Button onClick={() => {
-        if(currentStep > 0)
-          setCurrentStep((step) => step -= 1)
-      }}>Last</Button>
-      <Button onClick={() => {
-        if(currentStep < steps.length - 1)
-          setCurrentStep((step) => step += 1)
-      }}>Next</Button>
+      </Wrapper>
     </div>
   )
 }

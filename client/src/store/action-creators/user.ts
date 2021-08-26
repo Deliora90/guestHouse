@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 import AuthService from "../../services/AuthService";
 import axios from "axios";
 import { AuthResponse } from "../../models/response/AuthResponse";
-import { API_URL } from "../../http";
+import { API_URL } from "../../utils/consts";
 
 export const registrationUser = (email: string, password: string) => {
   return async (dispatch: Dispatch<UserAction>): Promise<void> => {
