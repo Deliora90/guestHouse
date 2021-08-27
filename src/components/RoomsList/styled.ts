@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 // Props
-interface RoomProps{
+interface RoomProps {
   direction: "row" | "column";
 }
 
@@ -14,36 +14,39 @@ export const RoomsWrapper = styled.ul`
 export const Room = styled.li<RoomProps>`
   display: flex;
   padding: 20px;
-  flex-direction: ${({direction}) => direction};
+  flex-direction: ${({ direction }) => direction};
   gap: 21px;
   background: #FFFFFF;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.25);
   border-radius: 6px;
 `
-export const RoomImgContainer = styled.div`
-  width: 30%;
+export const RoomImgContainer = styled.div<RoomProps>`
+  width: ${({ direction }) => direction === "row" ? "30%" : "100%"};
   position: relative;
   max-height: 300px;
+  overflow: hidden;
+  border-radius: ${({ direction }) => direction === "column" ? "6px 6px 0px 0px" : "6px"};
 `
 export const RoomImg = styled.img`
   width: 100%;
   height: 100%;
   max-height: 300px;
   object-fit: cover;
-  border-radius: 6px;
+  //border-radius: 6px;
+
 `
-export const RoomImgLabel = styled.div`
+export const RoomImgLabel = styled.div<RoomProps>`
   position: absolute;
   left: 0;
-  bottom: 30px;
+  bottom:  ${({ direction }) => direction === "column" ? "0" : "30px"};
   width: 100%;
   padding: 8px 0px;
   background-color: #FFB23F;
   color: #FFF;
   text-align: center;
 `
-export const RoomInfo = styled.div`
-  width: 50%;
+export const RoomInfo = styled.div<RoomProps>`
+  width: ${({ direction }) => direction === "row" ? "50%" : "100%"};
 `
 export const RoomTitle = styled.h2`
   ${(props) => props.theme.mixins.fontStyle("Montserrat", "normal", 600, "22px", "27px")}
@@ -62,21 +65,25 @@ export const RoomMaxGuestNum = styled.p`
   ${(props) => props.theme.mixins.fontStyle("Montserrat", "normal", 800, "18px", "22px")}
 `
 
-export const RoomDescription = styled.h2`
-  max-width: 78%;
+export const RoomDescription = styled.h2<RoomProps>`
+  max-width: ${({ direction }) => direction === "column" ? "100%" : "78%"};
+  text-align: ${({ direction }) => direction === "column" ? "center" : "left"};
   margin-bottom: 25px;
   ${(props) => props.theme.mixins.fontStyle("Montserrat", "normal", 400, "14px", "17px")}
 `
-export const RoomControl = styled.div`
-  width: 20%;
+export const RoomControl = styled.div<RoomProps>`
+  width: ${({ direction }) => direction === "row" ? "20%" : "100%"};
   display: flex;
-  flex-direction: column;
+  gap: ${({ direction }) => direction === "column" ? "16px" : "0"};
+  justify-content: space-between;
+  flex-direction:  ${({ direction }) => direction === "column" ? "row" : "column"};
 `
-export const RoomControlRow = styled.div`
+export const RoomControlRow = styled.div<RoomProps>`
   display: flex;
+  width: ${({ direction }) => direction === "row" ? "100%" : "50%"};
   padding: 13px 0px;
   flex-direction: column;
-  border-bottom: 1px solid #3F8CFF;
+  ${({ direction }) => direction === "column" ? "1px solid #3F8CFF" : "none"};
   &:last-child{
     border-bottom: none;
   }

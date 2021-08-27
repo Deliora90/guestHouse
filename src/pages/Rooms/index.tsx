@@ -13,7 +13,7 @@ const Rooms: React.FC = () => {
   const steps = [
     {
       title: "Номер и цена",
-      content: <RoomsList rooms={rooms} />,
+      content: <RoomsList rooms={rooms} direction={typeDevice === "tablet" || typeDevice === "phone" ? "column" : "row"}/>,
     },
     {
       title: "Бронь и оплата",

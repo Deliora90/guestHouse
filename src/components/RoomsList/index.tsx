@@ -8,20 +8,21 @@ import { Button } from "../Buttons/buttons";
 
 interface RoomsListProps {
   rooms: IRoom[] | null;
+  direction: "column" | "row";
 }
-const RoomsList: React.FC<RoomsListProps> = ({ rooms }: RoomsListProps) => {
+const RoomsList: React.FC<RoomsListProps> = ({ rooms, direction }: RoomsListProps) => {
   return (
     <RoomsWrapper>
       {rooms?.map((room, index) => {
         return (
-          <Room direction={"row"} key={index}>
-            <RoomImgContainer>
+          <Room direction={direction} key={index}>
+            <RoomImgContainer direction={direction}>
               <RoomImg src={`${API_STATIC}${room.mainPicture}`} />
-              <RoomImgLabel>
+              <RoomImgLabel direction={direction}>
                 В наличии {room.amountFree} номеров
               </RoomImgLabel>
             </RoomImgContainer>
-            <RoomInfo>
+            <RoomInfo direction={direction}>
               <RoomHeader>
                 <RoomTitle>{room.type}</RoomTitle>
                 <RoomMaxGuest>
@@ -29,15 +30,15 @@ const RoomsList: React.FC<RoomsListProps> = ({ rooms }: RoomsListProps) => {
                   <BsFillPersonFill color="#3F8CFF" size="16px" />
                 </RoomMaxGuest>
               </RoomHeader>
-              <RoomDescription>{room.descriptions}</RoomDescription>
+              <RoomDescription direction={direction}>{room.descriptions}</RoomDescription>
               <Description label="Площадь номера" text={room.square + "м2"} />
               <Description label="Спальные места" text={room.sleepingPlaces} />
               <Description label="Максимальное количество гостей" text={room.maxGuests.toString()} />
               <Description label="Оснащение номера" text={room.equipment} />
               <Description label="Оплата" text={`Взимается ${room.payment} процентов от общей стоимости проживания`} />
             </RoomInfo>
-            <RoomControl>
-              <RoomControlRow>
+            <RoomControl direction={direction}>
+              <RoomControlRow direction={direction}>
                 <RoomControlText>
                   Начиная с <br />
                   <RoomControlPrice>{room.sumWithoutFood} руб</RoomControlPrice><br />
@@ -46,7 +47,7 @@ const RoomsList: React.FC<RoomsListProps> = ({ rooms }: RoomsListProps) => {
                 <Button>Выбрать</Button>
                 <RoomControlText>Без питания</RoomControlText>
               </RoomControlRow>
-              <RoomControlRow>
+              <RoomControlRow direction={direction}>
                 <RoomControlText>
                   Начиная с <br />
                   <RoomControlPrice>{room.sumWithFood} руб</RoomControlPrice><br />
