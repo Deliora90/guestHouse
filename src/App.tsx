@@ -3,7 +3,6 @@ import { useActions } from "./hooks/useActions";
 import { BrowserRouter } from "react-router-dom";
 import AppRouter from './components/AppRouter';
 import Header from './components/Header';
-import { Wrapper } from "./styles/layout";
 import "./styles/App.scss";
 import { useTypesSelector } from './hooks/useTypesSelector';
 

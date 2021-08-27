@@ -1,15 +1,13 @@
 import React from "react";
 import Stepper from "../../components/Stepper";
-import { Button } from "../../components/Buttons/buttons";
 import { useTypesSelector } from "../../hooks/useTypesSelector";
-import { useEffect } from "react";
 import RoomsList from "../../components/RoomsList";
 import { Wrapper } from "../../styles/layout";
 
 const Rooms: React.FC = () => {
   const { typeDevice } = useTypesSelector(state => state.global);
   const { rooms } = useTypesSelector(state => state.rooms);
-  const [currentStep, setCurrentStep] = React.useState(0);
+  const [currentStep] = React.useState(0);
   const steps = [
     {
       title: "Номер и цена",
@@ -25,16 +23,16 @@ const Rooms: React.FC = () => {
     },
   ];
 
-  const onNextStep = () => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep((step) => step += 1);
-    }
-  }
-  const onPreviousStep = () => {
-    if (currentStep > 0) {
-      setCurrentStep((step) => step -= 1);
-    }
-  }
+  // const onNextStep = () => {
+  //   if (currentStep < steps.length - 1) {
+  //     setCurrentStep((step) => step += 1);
+  //   }
+  // }
+  // const onPreviousStep = () => {
+  //   if (currentStep > 0) {
+  //     setCurrentStep((step) => step -= 1);
+  //   }
+  // }
 
   return (
     <div>
