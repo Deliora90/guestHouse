@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useActions } from "./hooks/useActions";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import AppRouter from './components/AppRouter';
 import Header from './components/Header';
 import "./styles/App.scss";
@@ -30,10 +30,10 @@ function App(): JSX.Element {
   }, []);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Header />
       <AppRouter />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
