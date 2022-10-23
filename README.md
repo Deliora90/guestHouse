@@ -2,7 +2,7 @@
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Deliora90/guestHouse)
 
-Development in progress. Booking rooms in Valentina Guest House. If you want to watch these project, please, follow the link: https://deliora90.github.io/guestHouse/
+Booking rooms in Valentina Guest House. If you want to watch these project, please, follow the link: https://deliora90.github.io/guestHouse/
 
 ## Content
 * React
